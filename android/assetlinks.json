@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.grupo19.musicall.twa",
+        "sha256_cert_fingerprints": ["78:1D:36:1A:B8:7B:E5:77:24:5F:F7:8C:26:EE:44:00:D2:A6:A6:39:DE:51:2D:F7:B1:01:9B:E7:3A:E1:A9:8D"]
+      }
+    }]
