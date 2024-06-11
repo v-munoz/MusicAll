@@ -11,6 +11,8 @@ MusicAll es una aplicación de gestión de agrupaciones musicales que permite a 
 ## Enlace a la aplicación web
 
 Visita [MusicAll](https://musicall.web.app) para ver el desarrollo de la aplicación.
+>[!CAUTION]
+Estoy en proceso de cambiar el hosting por lo que es probable que no funcione el enlace
 
 ### Tecnologías utilizadas
 
