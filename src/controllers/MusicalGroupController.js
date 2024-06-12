@@ -34,8 +34,6 @@ export function CreateGroup() {
     const [searchResults, setSearchResults] = useState([]); // Almacena los usuarios encontrados para mostrarlos
     const [usersData, setUsersData] = useState([]); // Almacena la información de los usuarios buscados y seleccionados
 
-
-
     // Función asíncrona para manejar el avance al siguiente paso del formulario al clicar el botón 'Siguiente'
     const handleNextStep = async () => {
 
@@ -169,8 +167,7 @@ export function CreateGroup() {
             await firestore.collection('rel_group_user').add({
                 userId: currentUser.uid, // ID del usuario que crea el grupo (admin)
                 groupId: groupId, // ID del grupo 
-                role: 'admin', // Como es el creador tiene rol de 'Admin'
-                // <TODO! Sería mejor que admin fuera un campo booleano y role sirviera para almacenar el rol (instrumento) del músico en la banda>
+                admin: true, // Como es el creador tiene rol de 'Admin'
             });
 
             // Promesa para añadir al resto de miembros al grupo a través de las conexiones con la colección intermedia 'rel_group_user'
@@ -187,7 +184,7 @@ export function CreateGroup() {
                     await firestore.collection('rel_group_user').add({
                         userId: userId, // ID del usuario que crea el grupo (admin)
                         groupId: groupId, // ID del grupo 
-                        role: '', // <TODO! Completar para poner roles por instrumento que toca en la banda>
+                        admin: false,
                     });
                 }
             }));
@@ -195,7 +192,7 @@ export function CreateGroup() {
             navigate('/mis-grupos');
 
         } catch (error) {
-            setError(error);
+            setError(error.message); // Asegúrate de almacenar solo el mensaje de error
         }
     };
 
