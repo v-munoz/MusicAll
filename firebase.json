@@ -7,14 +7,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "build",
-    "site": "musicall",
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ],
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
