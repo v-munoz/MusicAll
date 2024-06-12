@@ -4,19 +4,21 @@ MusicAll es una aplicación de gestión de agrupaciones musicales que permite a 
 
 ## Características principales
 
+- **Gestión de usuarios y grupos:** Crea y administra perfiles de usuarios y grupos para tu agrupación musical.
 - **Planificación de eventos:** Organiza tus eventos musicales y ensayos de forma eficiente.
 - **Repertorio musical:** Accede a un repertorio de partituras personalizado para cada músico, así como a un repertorio común que puede ser compartido entre todos los miembros de la agrupación.
-- **Gestión de usuarios:** Crea y administra perfiles de usuarios para tu agrupación musical.
+
 
 ## Enlace a la aplicación web
 
 Visita [MusicAll](https://musicall.web.app) para ver el desarrollo de la aplicación.
+>[!CAUTION]
+Estoy en proceso de cambiar el hosting por lo que es probable que no funcione el enlace
 
 ### Tecnologías utilizadas
 
 - **Frontend:** Desarrollado principalmente con React.
-- **Base de datos:** Utiliza Firebase, una base de datos NoSQL.
-- **Plataforma móvil:** En proceso de compilación como una aplicación web para dispositivos móviles con Apache Cordova.
+- **Base de datos:** Utiliza FireStore, una base de datos NoSQL de Firebase.
 
 ## Instalación
 
