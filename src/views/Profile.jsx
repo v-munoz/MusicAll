@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Alert, Table, Form } from "react-bootstrap";
+import { Button, Alert, Table, Form, Container } from "react-bootstrap";
 import ModalInstruments from "../components/ModalInstruments";
 import { EditUserData } from "../controllers/UserController";
 import { PlusLg } from 'react-bootstrap-icons';
@@ -24,15 +24,15 @@ export default function User() {
     } = EditUserData();
 
     return (
-        <>
+        <Container className="pt-4">
             {/**Mostrar información del perfil si existe una cuenta */}
             {user && (
                 <>
-                    <h2 className='text-center'>Información de perfil</h2>
+                    <h2 className="mb-0">Información de perfil</h2>
+                    <hr />
 
                     {/**Presentado en un Form para poder editarlo */}
-                    <Form>
-
+                    <Form className='reduced-width py-2'>
                         {/**Campo de email */}
                         <Form.Group className="my-3">
                             <Form.Label className='fw-semibold'>Email</Form.Label>
@@ -81,81 +81,79 @@ export default function User() {
                                 disabled
                             />
                         </Form.Group>
-                    </Form>
-
-                    {/**Tabla de instrumentos seleccionados */}
-                    <Table hover size='sm' className='my-3'>
-                        <thead>
-                            <tr>
-                                <th colSpan={2} className='border-0'>Instrumentos</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {/* Muestra los instrumentos guardados en la cuenta */}
-                            {!editing && user.instruments.map((instrument, index) => (
-                                <tr key={index}>
-                                    <td className='col-1 border-end'>{index + 1}</td>
-                                    <td className='fw-semibold ps-3'>{instrument}</td>
-                                </tr>
-                            ))}
-                            {/* Muestra solo los instrumentos de editedUser en modo edición */}
-                            {editing && editedUser.instruments.map((instrument, index) => (
-                                <tr key={index}>
-                                    <td className='col-1 border-end'>{index + 1}</td>
-                                    <td className='fw-semibold ps-3'>{instrument}</td>
-                                    {/* Muestra una tercera columna con un botón eliminar */}
-                                    <td className="d-flex">
-                                        <Button variant='close' className='ms-auto' onClick={() => handleInstrumentChange(instrument)} />
-                                    </td>
-                                </tr>
-                            ))}
-                            {/* Añadir una fila con un botón para añadir más instrumentos (ModalInstruments) en modo edición */}
-                            {editing && (
+                        {/**Tabla de instrumentos seleccionados */}
+                        <Table hover size='sm' className='my-3'>
+                            <thead>
                                 <tr>
-                                    <td colSpan={3}>
-                                        <Button
-                                            variant='transparent'
-                                            className='btn-sm w-100 d-flex justify-content-center align-items-center text-muted'
-                                            onClick={() => setShowModalInstruments(true)}
-                                        >
-                                            <PlusLg /> Añadir instrumentos
-                                        </Button>
-                                    </td>
+                                    <th colSpan={2} className='border-0'>Instrumentos</th>
                                 </tr>
+                            </thead>
+
+                            <tbody>
+                                {/* Muestra los instrumentos guardados en la cuenta */}
+                                {!editing && user.instruments.map((instrument, index) => (
+                                    <tr key={index}>
+                                        <td className='col-1 border-end'>{index + 1}</td>
+                                        <td className='fw-semibold ps-3'>{instrument}</td>
+                                    </tr>
+                                ))}
+                                {/* Muestra solo los instrumentos de editedUser en modo edición */}
+                                {editing && editedUser.instruments.map((instrument, index) => (
+                                    <tr key={index}>
+                                        <td className='col-1 border-end'>{index + 1}</td>
+                                        <td className='fw-semibold ps-3'>{instrument}</td>
+                                        {/* Muestra una tercera columna con un botón eliminar */}
+                                        <td className="d-flex">
+                                            <Button variant='close' className='ms-auto' onClick={() => handleInstrumentChange(instrument)} />
+                                        </td>
+                                    </tr>
+                                ))}
+                                {/* Añadir una fila con un botón para añadir más instrumentos (ModalInstruments) en modo edición */}
+                                {editing && (
+                                    <tr>
+                                        <td colSpan={3}>
+                                            <Button
+                                                variant='transparent'
+                                                className='btn-sm w-100 d-flex justify-content-center align-items-center text-muted'
+                                                onClick={() => setShowModalInstruments(true)}
+                                            >
+                                                <PlusLg /> Añadir instrumentos
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </Table>
+
+                        {/**Instanciar el componente con el modal para añadir más instrumentos */}
+                        <ModalInstruments
+                            showModal={showModalInstruments}
+                            handleCloseModal={() => setShowModalInstruments(false)}
+                            handleInstrumentSelection={handleInstrumentChange}
+                            selectedInstruments={editedUser.instruments}
+                        />
+                        {/**Mostrar mensajes de error o éxito */}
+                        {error && <Alert variant="danger">{error}</Alert>}
+                        {message && <Alert variant="info">{message}</Alert>}
+
+                        {/**Botón para editar perfil */}
+                        <div className='d-flex gap-3 my-4'>
+                            {/**Si está en modo edición, mostrar el botón de editar */}
+                            {!editing ? (
+                                <Button variant="danger" className='w-100 fw-semibold' onClick={handleEdit}>Editar perfil</Button>
+                            ) : (
+                                <> {/**Botones para cancelar y guardar cambios en el modo de edición */}
+                                    <Button variant="secondary" onClick={handleCancel}>Cancelar</Button>
+                                    <Button variant="success" className='w-100' onClick={handleSaveChanges}>Guardar cambios</Button>
+                                </>
                             )}
-                        </tbody>
-                    </Table>
-
-                    {/**Instanciar el componente con el modal para añadir más instrumentos */}
-                    <ModalInstruments
-                        showModal={showModalInstruments}
-                        handleCloseModal={() => setShowModalInstruments(false)}
-                        handleInstrumentSelection={handleInstrumentChange}
-                        selectedInstruments={editedUser.instruments}
-                    />
-
-                    {/**Mostrar mensajes de error o éxito */}
-                    {error && <Alert variant="danger">{error}</Alert>}
-                    {message && <Alert variant="info">{message}</Alert>}
-
-                    {/**Botón para editar perfil */}
-                    <div className='d-flex gap-3 my-4'>
-                        {/**Si está en modo edición, mostrar el botón de editar */}
-                        {!editing ? (
-                            <Button variant="danger" className='w-100 fw-semibold' onClick={handleEdit}>Editar perfil</Button>
-                        ) : (
-                            <> {/**Botones para cancelar y guardar cambios en el modo de edición */}
-                                <Button variant="secondary" onClick={handleCancel}>Cancelar</Button>
-                                <Button variant="success" className='w-100' onClick={handleSaveChanges}>Guardar cambios</Button>
-                            </>
-                        )}
-                    </div>
+                        </div>
+                    </Form>
                 </>
             )}
 
             {/**Mensaje si no hay usuario logeado */}
             {!user && <p>No hay usuario logeado</p>}
-        </>
+        </Container>
     );
 }

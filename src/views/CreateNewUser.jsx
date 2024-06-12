@@ -25,19 +25,21 @@ export default function CreateNewUser() {
     const [showModalInstruments, setShowModalInstruments] = useState(false);
 
     return (
-        <>
+        <div className="reduced-width">
             {/**Card que contiene el formulario de registro */}
             <Card className="shadow">
-                <Card.Header>
+                <Card.Header className="d-flex align-items-center">
                     {/**Botón para volver atrás */}
                     <Button
                         type="button"
                         variant="outline-dark"
-                        className="border-0 pb-2"
+                        className="border-0 mb-0 float-start"
                         onClick={() => navigate(-1)}
                     >
                         <ArrowLeft />
                     </Button>
+
+                    <Card.Title className="card-title fs-3 ps-4 mb-0">Datos del usuario</Card.Title>
                 </Card.Header>
 
                 <Card.Body>
@@ -131,6 +133,6 @@ export default function CreateNewUser() {
                     </Form>
                 </Card.Body>
             </Card>
-        </>
+        </div>
     );
 }

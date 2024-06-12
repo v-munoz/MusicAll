@@ -40,10 +40,10 @@ export default function Events() {
   });
 
   return (
-    <Container className="py-4">
+    <Container className="pt-4">
       {/**Encabezado de la vista con el título y un botón para crear eventos */}
-      <div className='d-flex flex-wrap-reverse justify-content-center justify-content-sm-between gap-2 mb-3'>
-        <h2>Eventos</h2>
+      <div className='d-flex flex-wrap-reverse justify-content-center justify-content-sm-between align-items-center gap-2'>
+        <h2 className='mb-0'>Eventos</h2>
 
         {/**Botón 'Crear un nuevo Evento' */}
         <Button variant='primary' className='ms-auto' onClick={() => setShowModal(true)}>
@@ -132,7 +132,7 @@ export default function Events() {
 
 
               {/**Eventos pasados 
-               * <!TODO: Mejorarlo para que no haya que repetir el código>
+               * <!TODO: Mejorarlo en el contrller para que no haya que repetir el código>
               */}
               {event.date < today && (
                 <>
@@ -229,7 +229,7 @@ export default function Events() {
         // Si no hay eventos muestra una alerta
         <>
           <hr />
-          <Alert key="no-events" variant="warning" className="text-center mt-3">
+          <Alert key="no-events" variant="warning">
             Aún no tienes ningún evento en el calendario.
           </Alert>
         </>

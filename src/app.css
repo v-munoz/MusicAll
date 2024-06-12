@@ -3,10 +3,18 @@
 
 .app-title {
     font-family: "Major Mono Display", monospace;
-    font-weight: 1000;
-    font-style: normal;
 }
-#root {
+
+h2, h3, h4, h5 {
     font-family: "Poppins";
-    font-weight: 300;
 }
+
+.card-title {
+    font-family: "Poppins";
+}
+
+.reduced-width {
+    max-width: 600px;
+    margin: 0 auto;
+}
+

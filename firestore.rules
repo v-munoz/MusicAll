@@ -15,7 +15,7 @@ service cloud.firestore {
     
     // He expandido la regla inicial no segura que permite todo hasta el 10 de Junio
     match /{document=**} {
-      allow read, write: if request.time < timestamp.date(2024, 6, 10);
+      allow read, write: if request.time < timestamp.date(2024, 12, 31);
     }
 		
     // Reglas provisionales (Hay que mejorarlas y asegurarse que funcionen correctamente)

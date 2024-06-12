@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../services/AuthService";
-import { Form, Button, Card, Alert, InputGroup, Image } from 'react-bootstrap';
+import { Form, Button, Card, Alert, InputGroup, Image, Container } from 'react-bootstrap';
 import { Eye, EyeSlash, Google } from "react-bootstrap-icons";
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -42,15 +42,24 @@ export default function LogIn() {
     }
 
     return (
-        <>
+        <div className="reduced-width">
             <div className="d-flex align-items-center justify-content-center gap-2">
                 <Image src={process.env.PUBLIC_URL + '/logo512.png'} style={{ maxWidth: '40px' }} className="border rounded-circle" />
                 <h1 className="app-title m-0 fw-bold">{process.env.REACT_APP_NAME}</h1>
             </div>
+
             {/* Card para el formulario de inicio de sesión */}
-            <Card className='shadow my-3'>
+            <Card className='shadow my-4'>
                 <Card.Body>
                     <h2 className='text-center pb-2'>Iniciar sesión</h2>
+
+                    <Alert variant="secondary" className="small p-2" dismissible>
+                        <h5 className="fs-6">Cuenta de pruebas</h5>
+                        Usuario: <span className="fst-italic">user@example.com</span>
+                        <br/>
+                        Contraseña: <span className="fst-italic">123456</span>
+                    </Alert>
+
                     <Form onSubmit={handleSubmit}>
 
                         {/* Mostrar mensaje de error si existe */}
@@ -95,15 +104,14 @@ export default function LogIn() {
             </Card>
 
             {/* Enlaces para registrarse y recuperar contraseña */}
-            <div className='mt-4'>
+            <div className='pt-3'>
                 <p>¿No tienes una cuenta?
-                    <Link to="/registro" className='ms-2'>Regístrate</Link>
+                    <Link to="/registro" className='fw-semibold text-nowrap ms-2'>Regístrate</Link>
                 </p>
                 <p>¿Has olvidado la contraseña?
-                    <Link to="/recuperar-contrasena" className="ms-2">Recuperar contraseña</Link>
+                    <Link to="/recuperar-contrasena" className="fw-semibold text-nowrap ms-2">Recuperar contraseña</Link>
                 </p>
-
             </div>
-        </>
+        </div>
     )
 }

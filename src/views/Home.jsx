@@ -14,22 +14,19 @@ export default function Home() {
 
   // <!TODO: Mejorar la presentación y visualización de datos de '/inicio'>
   return (
-    <Container className="pt-3">
+    <Container className="pt-5">
       {account && userProfile ? (
         // Muestra unos encabezados como si fueran notificaciones de la App
         <div className="d-grid gap-4">
           {/**Saludo al usuario */}
-          <div className="d-flex align-items-center gap-2 bg-body-tertiary border rounded-pill p-2">
-            <Image src={process.env.PUBLIC_URL + '/logo512.png'} style={{ maxWidth: '40px' }} className="border rounded-circle" />
-            <h4 className="m-0">¡Hola, {userProfile.name}!</h4>
-          </div>
+          <h4 className="m-0">¡Hola, {userProfile.name}!</h4>
+          
+          <hr className="my-0"/>
 
-          <hr className="my-2" />
-
-          {/**"Notificaciones" informando si has creado o te has unido a algún grupo 
+          {/**"Novedades" informando si has creado o te has unido a algún grupo 
            * <!TODO: Completar, por ahora no son mensajes relevantes, solo indica si has creado o te has unido a un grupo>
           */}
-          <h5 className="my-0">Notificaciones:</h5>
+          <h5 className="mb-0">Novedades:</h5>
           {/**Si tienes eventos... */}
           {userGroups.length > 0 ? (
             <div className="d-flex flex-wrap justify-content-center gap-3">
@@ -45,17 +42,17 @@ export default function Home() {
             </div>
           ) : (
             // Alerta de que aún no tienes ningún grupo
-            <Alert variant="warning" className="mt-3">
-              ¡Para aprovechar al máximo MusicAll, crea tu propio grupo o únete a uno existente! Así podrás disfrutar de todas las funciones y beneficios que ofrecemos.
+            <Alert variant="info">
+              Para aprovechar al máximo MusicAll, crea tu propio grupo o únete a uno existente. ¡Así podrás disfrutar de todas las funciones y beneficios que ofrecemos!
             </Alert>
           )}
 
-          <hr className="my-2" />
+          <hr className="my-0" />
 
           {/**Información de tus eventos
            * <!TODO: Filtrar por eventos recién creados o próximos. Ahora muestra todos>
            */}
-          <h5 className="my-0">Próximos eventos:</h5>
+          <h5 className="mb-0">Próximos eventos:</h5>
           {events.length > 0 ? (
             // Si tienes eventos...
             <div className="d-flex flex-wrap flex-row justify-content-between">
@@ -70,7 +67,7 @@ export default function Home() {
                         placement="top"
                         overlay={<Tooltip id="tooltip" className='text-capitalize'>{event.type}</Tooltip>}
                       >
-                        <span className={`col-auto p-1 rounded-2 bg-${event.type === 'concierto' ? 'warning' : event.type === 'ensayo' ? 'success' : 'body-secondary'}`}></span>
+                        <span className={`col-auto p-1 rounded-2 bg-${event.type === 'concierto' ? 'info' : event.type === 'ensayo' ? 'success' : 'body-secondary'}`}></span>
                       </OverlayTrigger>
                       {/**Nombre del evento */}
                       <Card.Title className="fw-semibold mb-0">{event.title}</Card.Title>
@@ -93,14 +90,14 @@ export default function Home() {
             </div>
           ) : (
             // Mensaje si no hay eventos creados por el usuario o en ninguno de sus grupos
-            <Alert variant="warning" className="mt-3">
+            <Alert variant="info">
               ¡No hay eventos próximos! Asegúrate de estar al tanto de las novedades de tus grupos para no perderte ninguno.
             </Alert>
           )}
         </div>
       ) : (
         // Mensaje si no hay ningún usuario registrado
-        <Alert variant="danger" className="mt-3">
+        <Alert variant="danger">
           Error: No hay ningún usuario registrado
         </Alert>
       )}

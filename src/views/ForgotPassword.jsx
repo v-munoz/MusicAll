@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../services/AuthService";
-import { Form, Button, Card, Alert } from 'react-bootstrap';
-import { ArrowLeft, LockFill } from "react-bootstrap-icons";
+import { Form, Button, Card, Alert, Image } from 'react-bootstrap';
+import { ArrowLeft, Lock } from "react-bootstrap-icons";
 import { useNavigate } from 'react-router-dom';
 
 // Vista para el formulario de inicio de sesión
@@ -11,7 +11,7 @@ export default function ResetPassword() {
 
     // Estado para manejar los errores de autenticación
     const [error, setError] = useState('');
-    
+
     // Estado para manejar los errores de autenticación
     const [message, setMessage] = useState('');
 
@@ -28,7 +28,7 @@ export default function ResetPassword() {
         e.preventDefault(); // Impedir el comportamiento predeterminado del formulario
 
         try {
-            setMessage(""); 
+            setMessage("");
             setError("");
             setLoading(true); // Establecer el estado de carga en verdadero
 
@@ -44,11 +44,16 @@ export default function ResetPassword() {
     }
 
     return (
-        <>
-            {/* Card para el formulario de inicio de sesión */}
-            <Card className='shadow my-3'>
+        <div className="reduced-width">
+            <div className="d-flex align-items-center justify-content-center gap-2">
+                <Image src={process.env.PUBLIC_URL + '/logo512.png'} style={{ maxWidth: '40px' }} className="border rounded-circle" />
+                <h1 className="app-title m-0 fw-bold">{process.env.REACT_APP_NAME}</h1>
+            </div>
 
-                <Card.Header className="d-flex justify-content-between align-items-center">
+            {/* Card para el formulario de recuperar contraseña */}
+            <Card className='shadow my-4'>
+
+                <Card.Header className="d-flex justify-content-between align-items-center bg-body border-0 mt-2">
                     {/**Botón para volver atrás */}
                     <Button
                         type="button"
@@ -56,10 +61,10 @@ export default function ResetPassword() {
                         className="border-0"
                         onClick={() => navigate(-1)}
                     >
-                        <ArrowLeft />
+                        <ArrowLeft className="mb-1" />
                     </Button>
-                    <h2 className='pt-2'>Recuperar contraseña</h2>
-                    <LockFill className="fs-3"/>
+                    <h2 className='fs-3 mb-0'>Recuperar contraseña</h2>
+                    <Lock className="fs-4" />
                 </Card.Header>
 
                 <Card.Body>
@@ -75,7 +80,7 @@ export default function ResetPassword() {
                         </Form.Group>
 
                         {/* Botón para enviar el formulario de inicio de sesión */}
-                        <Button type='submit' className='w-100 my-2' disabled={loading}>Enviar enlace de acceso</Button>
+                        <Button type='submit' className='w-100 mt-2' disabled={loading}>Enviar enlace de acceso</Button>
 
                         {/* Mostrar mensaje de confirmación */}
                         {message && <Alert variant="info">{message}</Alert>}
@@ -84,18 +89,18 @@ export default function ResetPassword() {
                     </Form>
 
                     {/* Separador horizontal y texto "O" */}
-                    <div className="d-flex align-items-center justify-content-center mt-3">
+                    <div className="d-flex align-items-center justify-content-center my-3">
                         <hr className="flex-grow-1" />
                         <div className="mx-3 text-black-50">O</div>
                         <hr className="flex-grow-1" />
                     </div>
 
                     {/* Botón para continuar con Google (sin implementar) */}
-                    <a href="/registro" className="btn btn-light btn-block my-3 d-flex align-items-center justify-content-center">
+                    <a href="/registro" className="btn btn-light w-100">
                         Crear una nueva cuenta
                     </a>
                 </Card.Body>
             </Card>
-        </>
+        </div>
     )
 }

@@ -20,10 +20,10 @@ export default function Groups() {
 
 
     return (
-        <Container className='pt-3'>
+        <Container className='pt-4'>
             {/**Encabezado de la vista con el título y un botón para crear grupos */}
-            <div className='d-flex flex-wrap-reverse justify-content-center justify-content-sm-between gap-2 mb-2'>
-                <h2>Mis grupos</h2>
+            <div className='d-flex flex-wrap-reverse justify-content-center justify-content-sm-between align-items-center gap-2 mb-2'>
+                <h2 className='mb-0'>Mis grupos</h2>
 
                 {/**Botón 'Crear Nuevo Grupo' */}
                 <Button variant='primary' className='ms-auto' onClick={() => navigate("/crear-grupo")}>
@@ -58,7 +58,7 @@ export default function Groups() {
 
             ) : (
                 // Si no hay grupos mmuestra un mensaje de error
-                <Alert variant='warning' className='text-center'>Aún no perteneces ni administras ningún grupo.</Alert>
+                <Alert variant='warning'>Aún no perteneces ni administras ningún grupo.</Alert>
             )
             }
         </Container >

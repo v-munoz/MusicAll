@@ -129,7 +129,7 @@ function SearchBar({ showModal, handleCloseModal }) {
     };
 
     return (
-        <Modal show={showModal} onHide={handleCloseModal} fullscreen>
+        <Modal id="modal-search" show={showModal} onHide={handleCloseModal} className="fade" fullscreen>
             <Modal.Header className="gap-3">
                 {/**Botón para volver atrás */}
                 <Button
@@ -151,11 +151,11 @@ function SearchBar({ showModal, handleCloseModal }) {
 
             </Modal.Header>
             <Modal.Body>
-                <div className="row row-cols-auto justify-content-evenly gap-2 mb-3">
+                <div className="row row-cols-auto justify-content-evenly gap-1 mx-1 mb-3">
                     {/**Botones de filtro */}
                     {/**Filtro usuarios */}
                     <Badge
-                        bg={selectedFilter === "users" ? "info" : "body-secondary text-dark"}
+                        bg={selectedFilter === "users" ? "success" : "body-secondary text-reset"}
                         className="d-flex align-items-center gap-1 rounded-pill"
                         onClick={() => handleFilterChange("users")}
                         style={{ cursor: "pointer" }}
@@ -165,7 +165,7 @@ function SearchBar({ showModal, handleCloseModal }) {
 
                     {/**Filtro grupos */}
                     <Badge
-                        bg={selectedFilter === "groups" ? "info" : "body-secondary text-dark"}
+                        bg={selectedFilter === "groups" ? "success" : "body-secondary text-reset"}
                         className="d-flex align-items-center gap-1 rounded-pill"
                         onClick={() => handleFilterChange("groups")}
                         style={{ cursor: "pointer" }}
@@ -175,7 +175,7 @@ function SearchBar({ showModal, handleCloseModal }) {
 
                     {/**Filtro repertorio */}
                     <Badge
-                        bg={selectedFilter === "songs" ? "info" : "body-secondary text-dark"}
+                        bg={selectedFilter === "songs" ? "success" : "body-secondary text-reset"}
                         className="d-flex align-items-center gap-1 rounded-pill"
                         onClick={() => handleFilterChange("songs")}
                         style={{ cursor: "pointer" }}
@@ -185,7 +185,7 @@ function SearchBar({ showModal, handleCloseModal }) {
 
                     {/**Filtro eventos */}
                     <Badge
-                        bg={selectedFilter === "events" ? "info" : "body-secondary text-dark"}
+                        bg={selectedFilter === "events" ? "success" : "body-secondary text-reset"}
                         className="d-flex align-items-center gap-1 rounded-pill"
                         onClick={() => handleFilterChange("events")}
                         style={{ cursor: "pointer" }}
@@ -212,7 +212,7 @@ function SearchBar({ showModal, handleCloseModal }) {
                                         <span className="fw-semibold">{result.name} {result.surname}</span>
                                         {/**Muestra una badge si es tu propia cuenta */}
                                         {result.uid === currentUser.uid && (
-                                            <span className="badge bg-warning position-absolute end-0">Tu cuenta</span>)
+                                            <span className="badge bg-warning-subtle rounded-pill text-muted position-absolute end-0">Tu cuenta</span>)
                                         }
                                         <span className="rounded-pill bg-body-secondary text-muted small px-2">{result.email}</span>
                                     </div>

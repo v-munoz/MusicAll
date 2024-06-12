@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Navbar, Nav, Button, Image } from "react-bootstrap";
 import {
   PersonFill,
   Search,
@@ -51,55 +51,54 @@ function NavbarTop() {
   }, [prevScrollPos]);
 
   return (
-    <>
-      <Navbar className="navbar-top container-fluid justify-content-center px-2 bg-white " fixed="top" >
-
-        {/**Barra de búsqueda */}
-        <Nav className="w-100 bg-body-secondary rounded-pill ps-3 ms-3" >
-          <Nav.Item
-            onClick={() => setShowModalSearch(true)}
-            className="d-flex align-items-center w-100 gap-3 py-2 text-muted"
-          >
-            <Search />
-            Buscar
-          </Nav.Item>
-        </Nav>
-
-        {/* Botón para ir a la página de notificaciones */}
-        <Nav.Link href="/notificaciones" className="position-relative mx-4">
-          <BellFill size={"24px"} />
-          {/**Muestra una notificación aunque no haya
-           * TODO! corregirlo cuando se implementen las notificaciones
-           */}
-          <span className="badge d-flex p-1 rounded-circle bg-danger position-absolute top-0 start-100 translate-middle-x"></span>
-        </Nav.Link>
-
-        {/**Icono usuario */}
-        <Navbar.Brand>
-          <Button
-            type="button"
-            variant="primary"
-            onClick={() => setShowModalAccount(true)}
-            style={{
-              height: "35px",
-              width: "35px",
-              padding: "0",
-              borderRadius: "50%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <PersonFill size={"25px"} />
-          </Button>
+<>
+      <Navbar className="navbar-top flex-row flex-wrap justify-content-between px-2 py-1 bg-body-tertiary" fixed="top">
+        
+        {/**Logo y nombre de la APP */}
+        <Navbar.Brand className="col d-flex align-items-center gap-2">
+          <Image src={process.env.PUBLIC_URL + '/logo512.png'} style={{ maxWidth: '40px' }} className="ms-1 rounded-circle" />
+          <h1 className="app-title fs-3 m-0 fw-semibold">{process.env.REACT_APP_NAME}</h1>
         </Navbar.Brand>
+
+        <Nav className="col-auto align-items-center gap-2 gap-md-3 pe-sm-2">
+          {/** Barra de búsqueda */}
+          <Nav.Link className="text-reset" onClick={() => setShowModalSearch(true)} aria-label="Buscar">
+            <Search size={"24px"} />
+          </Nav.Link>
+
+          {/** Botón para ir a la página de notificaciones */}
+          <Nav.Link href="/notificaciones" className="position-relative text-reset" aria-label="Notificaciones">
+            <BellFill size={"24px"} />
+          </Nav.Link>
+
+          {/** Icono usuario */}
+          <Nav.Link>
+            <Button
+              type="button"
+              variant="primary"
+              onClick={() => setShowModalAccount(true)}
+              aria-label="Cuenta"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "0",
+                borderRadius: "50%",
+                height: "35px",
+                width: "35px",
+              }}
+            >
+              <PersonFill size={"25px"} />
+            </Button>
+          </Nav.Link>
+        </Nav>
       </Navbar>
 
       <ModalAccount showModal={showModalAccount} handleCloseModal={() => setShowModalAccount(false)} />
       <SearchBar showModal={showModalSearch} handleCloseModal={() => setShowModalSearch(false)} />
     </>
   );
-}
+};
 
 // Componente para la barra de navegación inferior
 function NavbarBottom() {
@@ -109,22 +108,42 @@ function NavbarBottom() {
     <Navbar className="bg-body-tertiary mx-auto" fixed="bottom">
       <Nav className="container-fluid justify-content-around ">
         {/* Botón para ir a la página de inicio */}
-        <Nav.Link href="/" className={location.pathname === '/' ? 'badge bg-primary-subtle rounded-pill py-2 px-4 active' : 'badge text-muted py-2 px-4'}>
+        <Nav.Link href="/"
+          className={location.pathname === '/'
+            ? 'badge bg-primary-subtle rounded-pill py-2 px-4 active'
+            : 'badge text-muted py-2 px-4'
+          }
+        >
           <HouseFill size={"24px"} />
         </Nav.Link>
 
         {/* Botón para ir a la página de repertorio */}
-        <Nav.Link href="/repertorio" className={location.pathname === '/repertorio' ? 'badge bg-primary-subtle rounded-pill py-2 px-4 active' : 'badge text-muted py-2 px-4'}>
+        <Nav.Link href="/repertorio"
+          className={location.pathname === '/repertorio'
+            ? 'badge bg-primary-subtle rounded-pill py-2 px-4 active'
+            : 'badge text-muted py-2 px-4'
+          }
+        >
           <MusicNoteList size={"24px"} />
         </Nav.Link>
 
         {/* Botón para ir a la página de eventos */}
-        <Nav.Link href="/eventos" className={location.pathname === '/eventos' ? 'badge bg-primary-subtle rounded-pill py-2 px-4 active' : 'badge text-muted py-2 px-4'}>
+        <Nav.Link href="/eventos"
+          className={location.pathname === '/eventos'
+            ? 'badge bg-primary-subtle rounded-pill py-2 px-4 active'
+            : 'badge text-muted py-2 px-4'
+          }
+        >
           <CalendarWeekFill size={"24px"} />
         </Nav.Link>
 
         {/* Botón para ir a la página de grupos */}
-        <Nav.Link href="/mis-grupos" className={location.pathname === '/mis-grupos' ? 'badge bg-primary-subtle rounded-pill py-2 px-4 active' : 'badge text-muted py-2 px-4'}>
+        <Nav.Link href="/mis-grupos"
+          className={location.pathname === '/mis-grupos'
+            ? 'badge bg-primary-subtle rounded-pill py-2 px-4 active'
+            : 'badge text-muted py-2 px-4'
+          }
+        >
           <PeopleFill size={"24px"} />
         </Nav.Link>
       </Nav>

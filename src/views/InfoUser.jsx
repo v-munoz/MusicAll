@@ -62,8 +62,7 @@ export default function UserProfile() {
     }, [currentUser]);
 
     return (
-        <>
-
+        <Container className="py-4">
             {/**Mensajes de error */}
             {error && <Alert variant="danger">{error}</Alert>}
             {/**Si hay usuario, muestra sus datos */}
@@ -204,6 +203,6 @@ export default function UserProfile() {
                     </div>
                 </Modal.Body>
             </Modal>
-        </>
+        </Container>
     );
 }

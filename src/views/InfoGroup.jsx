@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Dropdown, Table, Card, OverlayTrigger, Tooltip, ListGroup, Alert, } from 'react-bootstrap';
+import { Button, Dropdown, Table, Card, OverlayTrigger, Tooltip, ListGroup, Alert, Container, } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { GetGroupInfo, DeleteGroup, EditGroup } from '../controllers/MusicalGroupController';
 import { CalendarEvent, Clock, GeoAlt, PencilSquare, PersonGear, PlusLg, Save, XLg } from 'react-bootstrap-icons';
@@ -58,7 +58,7 @@ export default function InfoGroup() {
     };
 
     return (
-        <>
+        <Container className="py-4">
             {selectedGroup && (
                 // Tarjeta con información del grupo seleccionado a partir de la URL
                 <Card>
@@ -279,6 +279,6 @@ export default function InfoGroup() {
                     )}
                 </Card>
             )}
-        </>
+        </Container>
     )
 }

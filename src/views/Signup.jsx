@@ -69,7 +69,7 @@ export default function Signup() {
     };
 
     return (
-        <>
+        <div className="reduced-width">
             <div className="d-flex align-items-center justify-content-center gap-2">
                 <Image src={process.env.PUBLIC_URL + '/logo512.png'} style={{ maxWidth: '40px' }} className="border rounded-circle" />
                 <h1 className="app-title m-0 fw-bold">{process.env.REACT_APP_NAME}</h1>
@@ -130,9 +130,9 @@ export default function Signup() {
             {/* Enlace para iniciar sesión con cuenta */}
             <div className='mt-4'>
                 <p>¿Ya tienes una cuenta?
-                    <Link to="/login" className='ms-2'>Iniciar sesión</Link>
+                    <Link to="/login" className='fw-semibold ms-2'>Iniciar sesión</Link>
                 </p>
             </div>
-        </>
+        </div>
     )
 }

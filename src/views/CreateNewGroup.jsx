@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Form, FormGroup, FormControl, Dropdown, Alert, InputGroup } from 'react-bootstrap';
+import { Button, Card, Form, FormGroup, FormControl, Dropdown, Alert, InputGroup, Container } from 'react-bootstrap';
 import { ChevronLeft, ChevronRight, PersonCircle, PersonGear, Search, XLg } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import { CreateGroup } from '../controllers/MusicalGroupController';
@@ -33,7 +33,7 @@ export default function CreateNewGroup() {
     } = CreateGroup();
 
     return (
-        <>
+        <Container className="py-4">
             {/**Card con el formulario para introducir los datos del nuevo grupo */}
             <Card>
                 {/**Encabezado de la card */}
@@ -296,6 +296,6 @@ export default function CreateNewGroup() {
                     )}
                 </Card.Footer>
             </Card>
-        </>
+        </Container>
     );
 }
